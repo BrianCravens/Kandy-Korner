@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, {useState} from "react";
+import "./App.css";
+import ApplicationViews from "./ApplicationViews";
+import NavBar from "./components/nav/NavBar"
+import Login from "./components/auth/Login"
+// import { withRouter } from 'react-router-dom'
+const App = (props) => {
+  //Returns true or false
+  const isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
+  //Set to value of isAuthenticated / true or false
+  const [hasUser, setHasUser] = useState(isAuthenticated());
+  //Adding user to Session Storage setHasUser
+  const setUser = user => {
+    sessionStorage.setItem("credentials", JSON.stringify(user));
+    setHasUser(isAuthenticated());
+  };
+  const clearUser = () => {
+    sessionStorage.clear();
+    setHasUser(isAuthenticated());
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+      {!hasUser && <Login hasUser={hasUser} setUser = {setUser}/>}
+      {hasUser && <NavBar hasUser={hasUser} clearUser={clearUser}/>}
+      <ApplicationViews hasUser={hasUser} setUser={setUser} />
+    </>
+ )
+};
 
-export default App;
+export default App
