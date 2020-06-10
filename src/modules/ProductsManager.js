@@ -8,7 +8,7 @@ export default {
         return fetch (`${remoteURL}/products/${id}`).then(result => result.json())
     },
     delete(id) {
-        return fetch (`${remoteURL}/products/${id}`, {
+        return fetch (`${remoteURL}/products/${id}?_expand=productType`, {
             method: "DELETE"
         }).then(result => result.json())
     },
@@ -29,5 +29,12 @@ export default {
             },
             body: JSON.stringify(editedProduct)
         }).then(result => result.json())
+    },
+    getAllTypes() {
+        return fetch(`${remoteURL}/productTypes`).then(result => result.json())
+    },
+    getTypeById(id){
+        return fetch(`${remoteURL}/productTypes/${id}`).then(result => result.json())
     }
+
 }
