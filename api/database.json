@@ -9,8 +9,8 @@
     {
       "id": 2,
       "name": "Houchen's Favorite Licorice",
-      "price": "60.97",
-      "productTypeId": "2"
+      "price": "60.95",
+      "productTypeId": 4
     },
     {
       "id": 3,
@@ -124,6 +124,16 @@
       "password": "bryFive",
       "isSupervisor": false,
       "locationId": 3
+    },
+    {
+      "firstName": "Brian",
+      "lastName": "Cravens",
+      "address": "123 Main Dungeon",
+      "phone": "123-456-0009",
+      "username": "Kratos",
+      "password": "0033",
+      "locationId": "3",
+      "id": 4
     }
   ],
   "productLocations": [

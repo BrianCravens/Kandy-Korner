@@ -18,6 +18,7 @@ const NavBar = (props) => {
       <nav>
         <ul className="container">
           {props.hasUser ?<li><Link className="nav-link" to="/products">Products</Link></li>: null}
+          {props.hasUser ?<li><Link className="nav-link" to="/employees">Employees</Link></li>: null}
           {props.hasUser?<li><span className="nav-link" onClick={handleLogout}>Logout</span></li>:
              <li><Link className="nav-link"to="/login">Login</Link></li>}
           </ul>

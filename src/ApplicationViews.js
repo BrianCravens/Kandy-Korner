@@ -4,6 +4,10 @@ import ProductList from "./components/products/ProductList"
 import ProductDetail from "./components/products/ProductDetail"
 import ProductForm from "./components/products/ProductForm"
 import NewProduct from "./components/products/NewProduct"
+import EmployeeList from "./components/employees/EmployeeList";
+import EmployeeDetail from "./components/employees/EmployeeDetails";
+import EmployeeForm from "./components/employees/EmployeeForm"
+import NewEmployee from "./components/employees/NewEmployee"
 
 const ApplicationViews = (props) => {
     const hasUser = props.hasUser;
@@ -37,6 +41,34 @@ const ApplicationViews = (props) => {
             <Route path="/products/:productId(\d+)/edit" render={(props) => {
                 if (hasUser) {
                     return <ProductForm productId={parseInt(props.match.params.productId)} {...props}/>;
+                }else{
+                    return <Redirect to ="/login"/>;
+                }
+            }}/>
+            <Route exact path="/employees" render={(props) => {
+                if (hasUser) {
+                    return <EmployeeList {...props}/>
+                }else{
+                    return <Redirect to = "/login"/>;
+                }
+            }}/>
+            <Route exact path="/employees/:employeeId(\d+)" render={(props) => {
+                if (hasUser) {
+                    return <EmployeeDetail employeeId={parseInt(props.match.params.employeeId)} {...props}/>
+                }else{
+                    return <Redirect to = "/login"/>;
+                }
+            }}/>
+            <Route path="/employees/:employeeId(\d+)/edit" render={(props) => {
+                if (hasUser) {
+                    return <EmployeeForm employeeId={parseInt(props.match.params.employeeId)} {...props}/>;
+                }else{
+                    return <Redirect to ="/login"/>;
+                }
+            }}/>
+            <Route path="/employees/new" render={(props) => {
+                if (hasUser) {
+                    return <NewEmployee {...props}/>;
                 }else{
                     return <Redirect to ="/login"/>;
                 }

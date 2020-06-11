@@ -8,7 +8,6 @@ const ProductForm = props => {
     const [isLoading, setIsLoading] = useState(false);
 
     const getTypes = () => {
-        setIsLoading(true)
         ProductsManager.getAllTypes().then((types) => {
             setTypes(types)
         })
@@ -23,9 +22,9 @@ const ProductForm = props => {
     const cancelForm = () => {
             props.history.push("/products")   
     };
-    const addNewProduct = event => {
-        event.preventDefault();
-        if(product.name === "" || product.price === ""){
+    const addNewProduct = evt => {
+        evt.preventDefault();
+        if(product.name === "" || product.price === "" || product.productTypeId === ""){
             window.alert("Please fill out all fields")
         }else{
             setIsLoading(true);
@@ -50,7 +49,7 @@ const ProductForm = props => {
                     <label htmlFor= "price">Price</label>
                     <select id="productTypeSelect" value = {product.productTypeId} id= "productTypeId"onChange={handleFieldChange}>
                         <option value = "">Choose Product Type</option>
-                        {types.map(type => <option value= {type.id}>{type.name}</option>)}
+                        {types.map(type => <option key={type.id} value= {type.id}>{type.name}</option>)}
                     </select>
                     <label htmlFor="productType">Product Type</label>
                 </div>
