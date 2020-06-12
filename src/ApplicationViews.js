@@ -8,10 +8,15 @@ import EmployeeList from "./components/employees/EmployeeList";
 import EmployeeDetail from "./components/employees/EmployeeDetails";
 import EmployeeForm from "./components/employees/EmployeeForm"
 import NewEmployee from "./components/employees/NewEmployee"
+import LocationList from "./components/location/LocationList"
+import NewLocation from "./components/location/NewLocation"
+import LocationForm from "./components/location/LocationForm"
+import LocationDetail from "./components/location/LocationDetail"
 
 const ApplicationViews = (props) => {
     const hasUser = props.hasUser;
     const setUser = props.setUser;
+    const isSupervisor = props.isSupervisor;
 
 
 
@@ -61,7 +66,7 @@ const ApplicationViews = (props) => {
             }}/>
             <Route path="/employees/:employeeId(\d+)/edit" render={(props) => {
                 if (hasUser) {
-                    return <EmployeeForm employeeId={parseInt(props.match.params.employeeId)} {...props}/>;
+                    return <EmployeeForm isSupervisor={isSupervisor} employeeId={parseInt(props.match.params.employeeId)} {...props}/>;
                 }else{
                     return <Redirect to ="/login"/>;
                 }
@@ -69,6 +74,34 @@ const ApplicationViews = (props) => {
             <Route path="/employees/new" render={(props) => {
                 if (hasUser) {
                     return <NewEmployee {...props}/>;
+                }else{
+                    return <Redirect to ="/login"/>;
+                }
+            }}/>
+             <Route exact path="/locations" render={(props) => {
+                if (hasUser) {
+                    return <LocationList locationId={parseInt(props.match.params.locationId)} {...props}/>;
+                }else{
+                    return <Redirect to ="/login"/>;
+                }
+            }}/>
+             <Route path="/locations/:locationId(\d+)" render={(props) => {
+                if (hasUser) {
+                    return <LocationDetail locationId={parseInt(props.match.params.locationId)} {...props}/>;
+                }else{
+                    return <Redirect to ="/login"/>;
+                }
+            }}/>
+            <Route path="/locations/new" render={(props) => {
+                if (hasUser) {
+                    return <NewLocation locationId={parseInt(props.match.params.locationId)} {...props}/>;
+                }else{
+                    return <Redirect to ="/login"/>;
+                }
+            }}/>
+            <Route path="/locations/:locationId(\d+)/edit" render={(props) => {
+                if (hasUser) {
+                    return <LocationForm locationId={parseInt(props.match.params.locationId)} {...props}/>;
                 }else{
                     return <Redirect to ="/login"/>;
                 }

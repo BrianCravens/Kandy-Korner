@@ -5,7 +5,7 @@ import "./Employee.css"
 
 const EmployeeForm = props => {
     const [locations, setLocations] = useState([])
-    const [employee, setEmployee] = useState({firstName: "", lastName: "", address: "", phone: "", username: "", password: "", locationId: ""});
+    const [employee, setEmployee] = useState({firstName: "", lastName: "", address: "", phone: "", username: "", password: "", locationId: "", isSupervisor: false});
     const [isLoading, setIsLoading] = useState(false);
 
 
@@ -46,7 +46,8 @@ const EmployeeForm = props => {
             phone: employee.phone,
             username: employee.username,
             password: employee.password,
-            locationId: employee.locationId
+            locationId: employee.locationId,
+            isSupervisor: employee.isSupervisor
         };
 
             EmployeeManager.update(editedEmployee)
@@ -88,7 +89,7 @@ const EmployeeForm = props => {
                 </div>
                 <div className = "alignRight">
                     <button type= "button" disabled={isLoading} onClick= {cancelForm} className="btn-primary">Cancel</button>
-                    <button type= "button" disabled={isLoading} onClick= {handleDelete} className="btn-primary">Delete</button>
+                    {props.isSupervisor && <button type= "button" disabled={isLoading} onClick= {handleDelete} className="btn-primary">Delete</button>}
                     <button type= "button" disabled={isLoading} onClick= {updateExistingEmployee} className="btn-primary">Submit</button>
                 </div>
             </fieldset>

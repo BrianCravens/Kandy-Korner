@@ -47,6 +47,12 @@
       "name": "Chocolate Tux",
       "price": "3.89",
       "productTypeId": 1
+    },
+    {
+      "id": 9,
+      "name": "gummy dogfood-ONLY FOR DOGS",
+      "price": "0",
+      "productTypeId": "2"
     }
   ],
   "productTypes": [
@@ -98,8 +104,8 @@
       "lastName": "Houchens",
       "address": "404 Lost Way, Nashville, TN",
       "phone": "657-2355",
-      "username": "houchieMama",
-      "password": "appleprincess1",
+      "username": "Mama",
+      "password": "apple",
       "isSupervisor": true,
       "locationId": 1
     },
@@ -132,6 +138,7 @@
       "phone": "123-456-0009",
       "username": "Kratos",
       "password": "0033",
+      "isSupervisor": false,
       "locationId": "3",
       "id": 4
     }

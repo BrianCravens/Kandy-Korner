@@ -7,6 +7,10 @@ export default {
     get(id) {
         return fetch (`${remoteURL}/employees/${id}?_expand=location`).then(result => result.json())
     },
+    getUser(username, password) {
+        return fetch (`${remoteURL}/employees?username=${username}&password=${password}`).then(result => result.json())
+
+    },
     delete(id) {
         return fetch (`${remoteURL}/employees/${id}`, {
             method: "DELETE"

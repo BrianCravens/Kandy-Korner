@@ -5,13 +5,15 @@ import NavBar from "./components/nav/NavBar"
 import Login from "./components/auth/Login"
 // import { withRouter } from 'react-router-dom'
 const App = (props) => {
+  const [isSupervisor, setIsSupervisor] = useState(false)
   //Returns true or false
   const isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
   //Set to value of isAuthenticated / true or false
   const [hasUser, setHasUser] = useState(isAuthenticated());
   //Adding user to Session Storage setHasUser
   const setUser = user => {
-    sessionStorage.setItem("credentials", JSON.stringify(user));
+    setIsSupervisor(user.isSupervisor)
+    sessionStorage.setItem("credentials", JSON.stringify(user.id));
     setHasUser(isAuthenticated());
   };
   const clearUser = () => {
@@ -23,7 +25,7 @@ const App = (props) => {
     <>
       {!hasUser && <Login hasUser={hasUser} setUser = {setUser}/>}
       {hasUser && <NavBar hasUser={hasUser} clearUser={clearUser}/>}
-      <ApplicationViews hasUser={hasUser} setUser={setUser} />
+      <ApplicationViews isSupervisor={isSupervisor} hasUser={hasUser} setUser={setUser} />
     </>
  )
 };
